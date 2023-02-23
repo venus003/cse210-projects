@@ -32,9 +32,6 @@ class ListingActivity : Activity
 
         Console.WriteLine("List as many responses you can to the following prompt: ");
 
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(_duration);
-
         Random rnd = new Random();
         int number = rnd.Next(1, 6);
 
@@ -67,6 +64,9 @@ class ListingActivity : Activity
         activity.CountDown();
 
         Console.WriteLine();
+
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(_duration);
 
         while (DateTime.Now < futureTime)
         {
