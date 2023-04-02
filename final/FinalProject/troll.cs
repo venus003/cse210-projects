@@ -10,6 +10,6 @@ public class Troll : Enemy
 
     public override int GiveXp()
     {
-        return 35;
+        return 25;
     }
 }

@@ -10,6 +10,6 @@ public class Goblin : Enemy
 
     public override int GiveXp()
     {
-        return 20;
+        return 15;
     }
 }

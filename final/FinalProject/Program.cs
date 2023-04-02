@@ -1,5 +1,5 @@
 using System;
-
+// To Do: hide hp / weak, strong attacks / you swing wide random explanations / change flow of battle
 class Program
 {
     static int GetRoll()
@@ -140,20 +140,61 @@ class Program
                     }
 
                     Console.WriteLine($"{e1.GetName()} vs {user.GetName()} the {user.GetType()}");
+                    Console.WriteLine("Press enter to continue...");
+
+                    Console.Write($"{e1.GetName()} is at {e1.GetHp()} hp!");
+                    Console.ReadLine();
+                    Console.Write($"{user.GetName()} is at {user.GetHp()} hp!");
+                    Console.ReadLine();
 
                     while (e1.GetHp() > 0 && user.GetHp() > 0)
                     {
-                        Console.WriteLine($"{e1.GetName()} is at {e1.GetHp()} hp!");
-                        Console.WriteLine($"{user.GetName()} is at {user.GetHp()} hp!");
-
+                        int total = 0;
+                        string hit = "";
+                        
                         for (int i = 0; i < user.GetLevel(); i++)
                         {
-                            e1.SetHp(e1.GetHp() - GetRoll());
+                            total += GetRoll();
                         }
+
+                        if (total < 5)
+                        {
+                            hit = "weak";
+                        }
+
+                        else if (total < 10)
+                        {
+                            hit = "okay";
+                        }
+
+                        else if (total < 20)
+                        {
+                            hit = "moderate";
+                        }
+
+                        else if (total < 50)
+                        {
+                            hit = "amazing";
+                        }
+
+                        else if (total < 100)
+                        {
+                            hit = "heroic";
+                        }
+
+                        else
+                        {
+                            hit = "legendary";
+                        }
+
+                        Console.Write($"{user.GetName()} hit {e1.GetName()} with a {hit} attack!");
+                        Console.ReadLine();
+
+                        e1.SetHp(e1.GetHp() - total);
 
                         if (e1.GetHp() <= 0)
                         {
-                            Console.WriteLine($"{user.GetName()} dealt a killing blow to {e1.GetName()}.");
+                            Console.Write($"{user.GetName()} dealt a killing blow to {e1.GetName()}.");
                             Console.WriteLine();
 
                             user.SetXp(e1.GiveXp() + user.GetXp());
@@ -162,7 +203,9 @@ class Program
                             {
                                 user.LevelUp();
                                 user.SetXp(user.GetXp() % 100);
+                                Console.WriteLine();
                                 Console.WriteLine("You leveled up!");
+                                Console.WriteLine();
                             }
 
                             Console.Write("Press enter to continue...");
@@ -172,7 +215,32 @@ class Program
 
                         else
                         {
-                            user.SetHp(user.GetHp() - GetRoll());
+                            int ehit = GetRoll();
+                            string eword = "";
+
+                            if (ehit < 5)
+                            {
+                                eword = "weak";
+                            }
+
+                            else if (ehit < 10)
+                            {
+                                eword = "okay";
+                            }
+
+                            else if (ehit < 15)
+                            {
+                                eword = "moderate";
+                            }
+                            else
+                            {
+                                eword = "amazing";
+                            }
+
+                            user.SetHp(user.GetHp() - ehit);
+
+                            Console.Write($"{e1.GetName()} hit {user.GetName()} with a {eword} attack!");
+                            Console.ReadLine();
 
                             if (user.GetHp() <= 0)
                             {

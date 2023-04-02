@@ -10,6 +10,6 @@ public class Dragon : Enemy
 
     public override int GiveXp()
     {
-        return 50;
+        return 35;
     }
 }
